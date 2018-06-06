@@ -6,13 +6,12 @@ import datetime
 
 class UserProfile(AbstractUser):
     GENDER_CHOICES = (
-        (0, '待选择'),
-        (1, '已经选择'),
-        (2, '选择成功'),
+        ('male', '男'),
+        ('femal', '女'),
     )
     nick_name = models.CharField(max_length=50, verbose_name="昵称", default="")
     birday = models.DateField(verbose_name="生日", null=True, blank=True)
-    gender = models.CharField(max_length=6, choices=GENDER_CHOICES, default="female")
+    gender = models.CharField(max_length=6, choices=GENDER_CHOICES)
     address = models.CharField(max_length=100, default="")
     mobile = models.CharField(max_length=11, null=True, blank=True)
     image = models.ImageField(upload_to="image/%Y/%m/%d",default=u"image/default.png", max_length=100)
