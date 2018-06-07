@@ -26,9 +26,4 @@ class BannerAdmin(object):
     list_display = ['title', 'image', 'url', 'index', 'add_time']
     search_fields = ['title', 'image', 'url', 'index']
     list_filter = ['title', 'image', 'url', 'index', 'add_time']
-
-
-# from django.contrib.auth.models import User
-# xadmin.site.unregister(User)
-xadmin.site.register(EmailVerifyRecord, EmailVerifyRecordAdmin)
 xadmin.site.register(Banner, BannerAdmin)
