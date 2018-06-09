@@ -1,6 +1,7 @@
 #-*- coding:utf-8 -*-
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+
 # Create your models here.
 import datetime
 
@@ -14,7 +15,7 @@ class UserProfile(AbstractUser):
     gender = models.CharField(max_length=6, choices=GENDER_CHOICES)
     address = models.CharField(max_length=100, default="")
     mobile = models.CharField(max_length=11, null=True, blank=True)
-    image = models.ImageField(upload_to="image/%Y/%m/%d",default=u"image/default.png", max_length=100)
+    image = models.ImageField(upload_to="image/%Y/%m/%d",default=u"/static/image/default.png", max_length=100)
 
     class Meta:
         verbose_name = "用户信息"
