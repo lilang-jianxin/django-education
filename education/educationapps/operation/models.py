@@ -1,7 +1,7 @@
 # -*- coding:utf-8 -*-
 from django.db import models
-from ..users.models import UserProfile
-from ..course.models import Course
+from users.models import  UserProfile
+from course.models import Course
 # Create your models here.
 from datetime import datetime
 class UserAsk(models.Model):

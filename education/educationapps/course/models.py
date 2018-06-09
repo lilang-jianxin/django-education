@@ -1,6 +1,6 @@
 #-*- coding:utf-8 -*-
 from django.db import models
-from ..organization.models import Teacher,CourseOrg
+from organization.models import Teacher,CourseOrg
 from DjangoUeditor.models import UEditorField
 # Create your models here.
 from datetime import datetime
