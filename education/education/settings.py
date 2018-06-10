@@ -16,6 +16,7 @@ import sys
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.append(os.path.join(BASE_DIR, 'educationapps'))
+sys.path.append(os.path.join(BASE_DIR, 'education'))
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
 
@@ -26,7 +27,6 @@ SECRET_KEY = 'ef4p7vr4y(-lf6o-#fg&4om!2#!nw1*0uoawyt&)x5p-!_q_n+'
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -44,8 +44,9 @@ INSTALLED_APPS = [
     'message',
     'xadmin',
     'crispy_forms',
+    'captcha',
 ]
-AUTH_USER_MODEL="users.UserProfile"
+AUTH_USER_MODEL = "users.UserProfile"
 # Application definition
 AUTHENTICATION_BACKENDS = (
     'users.views.CustomBackend',
@@ -66,7 +67,7 @@ ROOT_URLCONF = 'education.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR,'templates')],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -81,7 +82,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'education.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
 
@@ -95,9 +95,9 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'DjangoAmdin',
-        'USER':'root',
-        'PASSWORD':'',
-        'HOST':'127.0.0.1'
+        'USER': 'root',
+        'PASSWORD': '',
+        'HOST': '127.0.0.1'
     }
 }
 
@@ -119,7 +119,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/2.0/topics/i18n/
 
@@ -133,11 +132,18 @@ USE_L10N = True
 
 USE_TZ = False
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS=[
-    os.path.join(BASE_DIR,'static')
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static')
 ]
+
+EMAIL_HOST = "smtp.163.com"
+EMAIL_PORT = 25
+EMAIL_HOST_USER = "1170370113@163.com"
+EMAIL_HOST_PASSWORD = "missandlove2018"
+EMAIL_USE_TLS= False
+EMAIL_FROM = "simple"
+

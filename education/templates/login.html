@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html>
-
+{% load staticfiles %}
 <head>
     <meta charset="UTF-8">
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
     <title>慕学在线网登录</title>
-    <link rel="stylesheet" type="text/css" href="/static/css/reset.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/reset.css' %}">
     <link rel="stylesheet" type="text/css" href="/static/css/login.css">
 </head>
 <body>
@@ -41,8 +41,8 @@
             <p class="fl hd-tips">慕学在线网，在线学习平台！</p>
             <ul class="fr hd-bar">
                 <li>服务电话：<span>33333333</span></li>
-                <li class="active"><a href="login.html">[登录]</a></li>
-                <li><a href="register.html">[注册]</a></li>
+                <li class="active"><a href="{% url 'login' %}">[登录]</a></li>
+                <li><a href="{% url 'register' %}">[注册]</a></li>
             </ul>
         </div>
     </div>
@@ -77,7 +77,8 @@
                         <label>密&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码</label>
                         <input name="password" id="password_l" type="password" placeholder="请输入您的密码"/>
                     </div>
-                    <div class="error btns login-form-tips" id="jsLoginTips"></div>
+                    <div class="error btns login-form-tips" id="jsLoginTips">
+                        {% for key,error in login_form.errors.items %}{{ error }}{% endfor %}{{ msg }}</div>
                     <div class="auto-box marb38">
 
                         <a class="fr" href="forgetpwd.html">忘记密码？</a>
@@ -85,7 +86,7 @@
                     <input class="btn btn-green" id="jsLoginBtn" type="submit" value="立即登录 > "/>
                     {% csrf_token %}
                 </form>
-                <p class="form-p">没有慕学在线网帐号？<a href="register.html">[立即注册]</a></p>
+                <p class="form-p">没有慕学在线网帐号？<a href="{% url 'register' %}">[立即注册]</a></p>
             </div>
         </div>
     </div>

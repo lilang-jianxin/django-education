@@ -6,9 +6,9 @@
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" >
 	<title>公开课评论 - 慕学在线网</title>
-	<link rel="stylesheet" type="text/css" href="/static/css/reset.css">
-	<link rel="stylesheet" type="text/css" href="/static/css/animate.css">
-	<link rel="stylesheet" type="text/css" href="/static/css/style.css">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/reset.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/animate.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
     
     <link rel="stylesheet" type="text/css" href="/static/css/muke/course/learn-less.css" />
 	<link rel="stylesheet" type="text/css" href="/static/css/muke/course/course-comment.css" />
@@ -507,7 +507,7 @@
             success: function(data) {
                 if(data.status == 'fail'){
                     if(data.msg == '用户未登录'){
-                        window.location.href="login.html";
+                        window.location.href="{% url 'login' %}";
                     }else{
                         alert(data.msg)
                     }
