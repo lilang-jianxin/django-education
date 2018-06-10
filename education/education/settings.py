@@ -140,11 +140,11 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')
 ]
 
-EMAIL_HOST = "smtp.163.com"
+EMAIL_HOST = 'smtp.qq.com'
 EMAIL_PORT = 25
-EMAIL_HOST_USER = "17381448491@163.com"
-EMAIL_HOST_PASSWORD = "12345678a"
-EMAIL_SUBJECT_PREFIX='simple heart'
-EMAIL_USE_TLS= True
-EMAIL_FROM = "simple"
+EMAIL_HOST_USER = '1170370113@qq.com' # 你的 QQ 账号
+EMAIL_HOST_PASSWORD = 'sufxicxbmdyphjjd'
+EMAIL_USE_TLS = True # 这里必须是 True，否则发送不成功
+EMAIL_FROM = '1170370113@qq.com' # 你的 QQ 账号 EMAIL_HOST_USER EMAIL_FROM 需要一样，不然发送失败
+
 
