@@ -17,6 +17,7 @@ import sys
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.append(os.path.join(BASE_DIR, 'educationapps'))
 sys.path.append(os.path.join(BASE_DIR, 'education'))
+sys.path.append(os.path.join(BASE_DIR, 'extendapps'))
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
 

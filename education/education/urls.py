@@ -13,11 +13,11 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.contrib import admin
-from django.urls import path,re_path,include
-from django.views.generic import TemplateView
-from users.views import LoginView,RegisterView,LogoutView
 import xadmin
+from django.urls import re_path, include
+from django.views.generic import TemplateView
+
+from users.views import LoginView, RegisterView, LogoutView, AciveUserView, ForgetPwdView, ResetView, ModifyPwdView
 
 urlpatterns = [
     re_path('^$', TemplateView.as_view(template_name="index.html"),name='index'),
@@ -25,7 +25,11 @@ urlpatterns = [
     re_path('^login/$',LoginView.as_view(),name='login'),
     re_path('^register/$',RegisterView.as_view(),name='register'),
     re_path('^captcha/', include('captcha.urls')),
+    re_path(r'^active/(?P<active_code>.*)/$', AciveUserView.as_view(), name="user_active"),
     re_path('^register/$', RegisterView.as_view(), name="register"),
     re_path('^logout/$', LogoutView.as_view(), name="logout"),
+    re_path(r'^forget/$', ForgetPwdView.as_view(), name="forget_pwd"),
+    re_path(r'^reset/(?P<active_code>.*)/$', ResetView.as_view(), name="reset_pwd"),
+    re_path(r'^modify_pwd/$', ModifyPwdView.as_view(), name="modify_pwd"),
 
 ]
