@@ -129,8 +129,11 @@ class ForgetPwdView(View):
         forget_form = ForgetForm(request.POST)
         if forget_form.is_valid():
             email = request.POST.get("email", "")
-            send_register_email(email, "forget")
-            return render(request, "send_success.html")
+            user=UserProfile.objects.filter(email=email)
+            if not user:
+                return render(request, "forgetpwd.html",{"msg":"您尚未注册，请您注册"})
+            status=send_register_email(email, "forget")
+            return render(request, "forgetpwd.html",{"msg":status})
         else:
             return render(request, "forgetpwd.html", {"forget_form": forget_form})
 
@@ -159,10 +162,11 @@ class ModifyPwdView(View):
             email = request.POST.get("email", "")
             if pwd1 != pwd2:
                 return render(request, "password_reset.html", {"email": email, "msg": "密码不一致"})
-            user = UserProfile.objects.get(email=email)
-            user.password = make_password(pwd2)
-            user.save()
-            return render(request, "login.html")
+            user = UserProfile.objects.filter(email=email)
+            if user:
+                user[0].password = make_password(pwd2)
+                user[0].save()
+                return render(request, "login.html")
         else:
             email = request.POST.get("email", "")
             return render(request, "password_reset.html", {"email": email, "modify_form": modify_form})
