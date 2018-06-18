@@ -31,22 +31,22 @@ urlpatterns = [
     re_path(r'^forget/$', ForgetPwdView.as_view(), name="forget_pwd"),
     re_path(r'^reset/(?P<active_code>.*)/$', ResetView.as_view(), name="reset_pwd"),
     re_path(r'^modify_pwd/$', ModifyPwdView.as_view(), name="modify_pwd"),
-    # 课程相关url配置
+    # 用户相关url配置
     url(r'^users/', include(('users.urls','users'), namespace="users")),
-    # # 课程机构url配置
-    # re_path(r'^org/', include('organization.urls', namespace="org")),
-    #
-    # # 课程相关url配置
-    # re_path(r'^course/', include('courses.urls', namespace="course")),
-    #
-    # # 配置上传文件的访问处理函数
-    # re_path(r'^media/(?P<path>.*)$', serve, {"document_root": MEDIA_ROOT}),
-    #
-    # # url(r'^static/(?P<path>.*)$',  serve, {"document_root":STATIC_ROOT}),
+    # 课程机构url配置
+    re_path('^org/', include(('organization.urls','organization'), namespace="org")),
+
+    # 课程相关url配置
+    re_path('^course/', include(('courses.urls','courses'), namespace="course")),
+
+    # 配置上传文件的访问处理函数
+    re_path('^media/(?P<path>.*)$', serve, {"document_root": MEDIA_ROOT}),
+
+    # url(r'^static/(?P<path>.*)$',  serve, {"document_root":STATIC_ROOT}),
 
 
-    #
-    # # 富文本相关url
-    # re_path(r'^ueditor/', include('DjangoUeditor.urls')),
+
+    # 富文本相关url
+    re_path('^ueditor/', include('DjangoUeditor.urls')),
 
 ]

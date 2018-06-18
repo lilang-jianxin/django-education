@@ -184,4 +184,55 @@ class UserinfoView(LoginRequiredMixin,View):
         else:
             return HttpResponse(json.dump(user_info_form.errors),content_type="'application/json'")
 
+class UploadImageView(LoginRequiredMixin,View):
+    '''
+    用户头像上传
+    '''
+    pass
 
+class UpdatePwdView(LoginRequiredMixin,View):
+    '''
+    用户个人中心修改密码
+    '''
+    pass
+
+class SendEmailCodeView(LoginRequiredMixin,View):
+    '''
+    发送邮箱验证码
+    '''
+    pass
+
+class UpdateEmailView(LoginRequiredMixin,View):
+    '''
+    修改邮箱
+    '''
+    pass
+class MyCourseView(LoginRequiredMixin,View):
+    '''
+    我的课程
+    '''
+    pass
+
+class MyFavOrgView(LoginRequiredMixin,View):
+    '''
+    我收藏的课程机构
+    '''
+    pass
+
+class MyFavTeacherView(LoginRequiredMixin,View):
+    '''
+    我收藏的授课讲师
+    '''
+    pass
+
+class MyFavCourseView(LoginRequiredMixin,View):
+    '''
+    我收藏的课程
+    '''
+    pass
+
+class MymessageView(LoginRequiredMixin,View):
+    '''
+    我的消息
+    '''
+    pass
