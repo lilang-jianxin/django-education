@@ -18,6 +18,7 @@ from utils.emaile_utils import send_register_email
 from users.form import ForgetForm,ModifyPwdForm
 from utils.mixin_utils import LoginRequiredMixin
 from .form import UserInfoForm
+from operation.models import UserCourse
 class CustomBackend(ModelBackend):
     def authenticate(self, request, username=None, password=None, **kwargs):
         try:
@@ -193,9 +194,9 @@ class UploadImageView(LoginRequiredMixin,View):
         image_form=UploadImageForm(request.POST,request.FILES,instance=request.user)
         if image_form.is_valid():
             image_form.save()
-            return HttpResponse('{"status":"success"}', content_type='application/json')
+            return HttpResponse(json.dumps({"status":"success"},ensure_ascii=False), content_type='application/json')
         else:
-            return HttpResponse('{"status":"failure"}', content_type='application/json')
+            return HttpResponse(json.dumps({"status":"failure"},ensure_ascii=False), content_type='application/json')
 
 class UpdatePwdView(LoginRequiredMixin,View):
     '''
@@ -207,13 +208,13 @@ class UpdatePwdView(LoginRequiredMixin,View):
             pw1=req.POST.get("password1","")
             pw2 = req.POST.get("password2", "")
             if pw1!=pw2:
-                return HttpResponse(HttpResponse(json.dumps({"status":"failure","msg":"密码不一致"}), content_type='application/json'))
+                return HttpResponse(HttpResponse(json.dumps({"status":"failure","msg":"密码不一致"},ensure_ascii=False), content_type='application/json'))
             user=req.user
             user.password=make_password(pw1)
             user.save()
-            return HttpResponse({"status":"success"}, content_type='application/json')
+            return HttpResponse(json.dumps({"status":"success"},ensure_ascii=False), content_type='application/json')
         else:
-            return HttpResponse(json.dumps(modify_form.errors),content_type='application/json')
+            return HttpResponse(json.dumps(modify_form.errors,ensure_ascii=False),content_type='application/json')
 
 class SendEmailCodeView(LoginRequiredMixin,View):
     '''
@@ -230,7 +231,9 @@ class MyCourseView(LoginRequiredMixin,View):
     '''
     我的课程
     '''
-    pass
+    def get(self,req):
+        user_course=UserCourse.objects.filter(user=req.user)
+        return render(req,'usercenter-mycourse.html',{"user_courses":user_course})
 
 class MyFavOrgView(LoginRequiredMixin,View):
     '''
