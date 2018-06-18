@@ -14,11 +14,11 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 import xadmin
-from django.urls import re_path, include
+from django.conf.urls import  url,re_path,include
 from django.views.generic import TemplateView
-
+from django.views.static import serve
 from users.views import LoginView, RegisterView, LogoutView, AciveUserView, ForgetPwdView, ResetView, ModifyPwdView
-
+from .settings import MEDIA_ROOT
 urlpatterns = [
     re_path('^$', TemplateView.as_view(template_name="index.html"),name='index'),
     re_path('^admin/', xadmin.site.urls),
@@ -31,5 +31,22 @@ urlpatterns = [
     re_path(r'^forget/$', ForgetPwdView.as_view(), name="forget_pwd"),
     re_path(r'^reset/(?P<active_code>.*)/$', ResetView.as_view(), name="reset_pwd"),
     re_path(r'^modify_pwd/$', ModifyPwdView.as_view(), name="modify_pwd"),
+    # 课程相关url配置
+    url(r'^users/', include(('users.urls','users'), namespace="users")),
+    # # 课程机构url配置
+    # re_path(r'^org/', include('organization.urls', namespace="org")),
+    #
+    # # 课程相关url配置
+    # re_path(r'^course/', include('courses.urls', namespace="course")),
+    #
+    # # 配置上传文件的访问处理函数
+    # re_path(r'^media/(?P<path>.*)$', serve, {"document_root": MEDIA_ROOT}),
+    #
+    # # url(r'^static/(?P<path>.*)$',  serve, {"document_root":STATIC_ROOT}),
+
+
+    #
+    # # 富文本相关url
+    # re_path(r'^ueditor/', include('DjangoUeditor.urls')),
 
 ]

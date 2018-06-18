@@ -1,5 +1,5 @@
 # -*- coding:utf-8 -*-
-
+import json
 from django.shortcuts import render
 from django.views.generic.base import View
 from django.shortcuts import render
@@ -9,7 +9,6 @@ from django.db.models import Q
 from django.urls import reverse
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.hashers import make_password
-
 from users.form import LoginForm
 from users.models import UserProfile
 from .form import RegisterForm
@@ -17,8 +16,8 @@ from operation.models import UserMessage
 from users.models import EmailVerifyRecord
 from utils.emaile_utils import send_register_email
 from users.form import ForgetForm,ModifyPwdForm
-
-
+from utils.mixin_utils import LoginRequiredMixin
+from .form import UserInfoForm
 class CustomBackend(ModelBackend):
     def authenticate(self, request, username=None, password=None, **kwargs):
         try:
@@ -170,4 +169,19 @@ class ModifyPwdView(View):
         else:
             email = request.POST.get("email", "")
             return render(request, "password_reset.html", {"email": email, "modify_form": modify_form})
+
+class UserinfoView(LoginRequiredMixin,View):
+    '''
+    用户个人信息
+    '''
+    def get(self,request):
+        return render(request, 'usercenter-info.html', {})
+    def post(self,request):
+        user_info_form=UserInfoForm(request.POST,instance=request.user)
+        if user_info_form.is_valid():
+            user_info_form.save()
+            return HttpResponse('{"status":"success"}', content_type='application/json')
+        else:
+            return HttpResponse(json.dump(user_info_form.errors),content_type="'application/json'")
+
 
