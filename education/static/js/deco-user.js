@@ -146,6 +146,7 @@ $(function(){
     );
     //保存个人资料
     $('#jsEditUserBtn').on('click', function(){
+        debugger
         var _self = $(this),
             $jsEditUserForm = $('#jsEditUserForm')
             verify = verifySubmit(

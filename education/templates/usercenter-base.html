@@ -33,7 +33,7 @@
                         {% if request.user.is_authenticated %}
                         <div class="personal">
                             <dl class="user fr">
-                                <dd>{{ user.username }}<img class="down fr" src="{% static "/static/images/top_down.png" %}"/></dd>
+                                <dd>{{ user.username }}<img class="down fr" src="{% static "/images/top_down.png" %}"/></dd>
                                 <dt><img width="20" height="20" src="{{ MEDIA_URL }}{{ request.user.image }}"/></dt>
                             </dl>
                             <div class="userdetail">
@@ -160,7 +160,6 @@
                 <div class="button">
                     <input id="jsResetPwdBtn" type="button" value="提交" />
                 </div>
-                <input type='hidden' name='csrfmiddlewaretoken' value='DaP7IUKm9FA9nELA9YUlYYWpyIDdCiIP' />
             {% csrf_token %}
             </form>
         </div>

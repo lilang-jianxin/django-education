@@ -182,19 +182,38 @@ class UserinfoView(LoginRequiredMixin,View):
             user_info_form.save()
             return HttpResponse('{"status":"success"}', content_type='application/json')
         else:
-            return HttpResponse(json.dump(user_info_form.errors),content_type="'application/json'")
+            return HttpResponse(json.dumps(user_info_form.errors,ensure_ascii=False),content_type="'application/json'")
 
 class UploadImageView(LoginRequiredMixin,View):
     '''
     用户头像上传
     '''
-    pass
+    def post(self,request):
+        from .form import UploadImageForm
+        image_form=UploadImageForm(request.POST,request.FILES,instance=request.user)
+        if image_form.is_valid():
+            image_form.save()
+            return HttpResponse('{"status":"success"}', content_type='application/json')
+        else:
+            return HttpResponse('{"status":"failure"}', content_type='application/json')
 
 class UpdatePwdView(LoginRequiredMixin,View):
     '''
     用户个人中心修改密码
     '''
-    pass
+    def post(self,req):
+        modify_form=ModifyPwdForm(req.POST)
+        if modify_form.is_valid():
+            pw1=req.POST.get("password1","")
+            pw2 = req.POST.get("password2", "")
+            if pw1!=pw2:
+                return HttpResponse(HttpResponse(json.dumps({"status":"failure","msg":"密码不一致"}), content_type='application/json'))
+            user=req.user
+            user.password=make_password(pw1)
+            user.save()
+            return HttpResponse({"status":"success"}, content_type='application/json')
+        else:
+            return HttpResponse(json.dumps(modify_form.errors),content_type='application/json')
 
 class SendEmailCodeView(LoginRequiredMixin,View):
     '''

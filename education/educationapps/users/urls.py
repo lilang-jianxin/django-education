@@ -1,3 +1,4 @@
+# -*- coding:utf-8 -*-
 ___author__ = 'jianxin',
 description = ''
 __date__ = '2018/6/18'
