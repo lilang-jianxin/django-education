@@ -18,9 +18,11 @@ from django.conf.urls import  url,re_path,include
 from django.views.generic import TemplateView
 from django.views.static import serve
 from users.views import LoginView, RegisterView, LogoutView, AciveUserView, ForgetPwdView, ResetView, ModifyPwdView
+from users.views import IndexView
 from .settings import MEDIA_ROOT
 urlpatterns = [
-    re_path('^$', TemplateView.as_view(template_name="index.html"),name='index'),
+    # re_path('^$', TemplateView.as_view(template_name="index.html"),name='index'),
+    re_path('^$', IndexView.as_view(), name='index'),
     re_path('^admin/', xadmin.site.urls),
     re_path('^login/$',LoginView.as_view(),name='login'),
     re_path('^register/$',RegisterView.as_view(),name='register'),
