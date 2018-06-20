@@ -26,7 +26,7 @@ sys.path.append(os.path.join(BASE_DIR, 'extendapps'))
 SECRET_KEY = 'ef4p7vr4y(-lf6o-#fg&4om!2#!nw1*0uoawyt&)x5p-!_q_n+'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 
@@ -47,6 +47,8 @@ INSTALLED_APPS = [
     'xadmin',
     'crispy_forms',
     'captcha',
+    'DjangoUeditor',
+    'pure_pagination',
 ]
 AUTH_USER_MODEL = "users.UserProfile"
 # Application definition
@@ -139,11 +141,11 @@ USE_TZ = False
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
-
-STATIC_ROOT = os.path.join(BASE_DIR, 'static') #这样的配置是在生产环境中
-# STATICFILES_DIRS = [
-#     os.path.join(BASE_DIR, 'static')
-# ]
+#
+# STATIC_ROOT = os.path.join(BASE_DIR, 'static') #这样的配置是在生产环境中
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static')
+]
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

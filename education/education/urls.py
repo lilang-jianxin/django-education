@@ -19,7 +19,7 @@ from django.views.generic import TemplateView
 from django.views.static import serve
 from users.views import LoginView, RegisterView, LogoutView, AciveUserView, ForgetPwdView, ResetView, ModifyPwdView
 from users.views import IndexView
-from .settings import MEDIA_ROOT,STATIC_ROOT
+from .settings import MEDIA_ROOT
 urlpatterns = [
     # re_path('^$', TemplateView.as_view(template_name="index.html"),name='index'),
     re_path('^$', IndexView.as_view(), name='index'),
@@ -44,7 +44,7 @@ urlpatterns = [
     # 配置上传文件的访问处理函数
     re_path('^media/(?P<path>.*)$', serve, {"document_root": MEDIA_ROOT}),
 
-    url(r'^static/(?P<path>.*)$',  serve, {"document_root":STATIC_ROOT}),
+    # url(r'^static/(?P<path>.*)$',  serve, {"document_root":STATIC_ROOT}),
 
 
 
