@@ -15,6 +15,7 @@ import sys
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
 sys.path.append(os.path.join(BASE_DIR, 'education'))
 sys.path.append(os.path.join(BASE_DIR, 'educationapps'))
 sys.path.append(os.path.join(BASE_DIR, 'extendapps'))
@@ -25,9 +26,9 @@ sys.path.append(os.path.join(BASE_DIR, 'extendapps'))
 SECRET_KEY = 'ef4p7vr4y(-lf6o-#fg&4om!2#!nw1*0uoawyt&)x5p-!_q_n+'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 # Application definition
 
@@ -138,12 +139,16 @@ USE_TZ = False
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static')
-]
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'static') #这样的配置是在生产环境中
+# STATICFILES_DIRS = [
+#     os.path.join(BASE_DIR, 'static')
+# ]
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+
 
 EMAIL_HOST = 'smtp.qq.com'
 EMAIL_PORT = 25
@@ -151,5 +156,4 @@ EMAIL_HOST_USER = '1170370113@qq.com' # 你的 QQ 账号
 EMAIL_HOST_PASSWORD = 'sufxicxbmdyphjjd'
 EMAIL_USE_TLS = True # 这里必须是 True，否则发送不成功
 EMAIL_FROM = '1170370113@qq.com' # 你的 QQ 账号 EMAIL_HOST_USER EMAIL_FROM 需要一样，不然发送失败
-
 
