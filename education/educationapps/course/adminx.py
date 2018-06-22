@@ -8,7 +8,7 @@ from organization.models import CourseOrg
 
 class LessonInline(object):
     model = Lesson
-    extra = 0
+    extra = 2#默认展开多少个数目
 
 class CourseResourceInline(object):
     model = CourseResource
@@ -17,7 +17,7 @@ class CourseResourceInline(object):
 class CourseAdmin(object):
     list_display = ['name', 'desc', 'detail', 'degree', 'learn_times', 'students', 'get_zj_nums', 'go_to']
     search_fields = ['name', 'desc', 'detail', 'degree', 'students']
-    list_filter = ['name', 'desc', 'detail', 'degree', 'learn_times', 'students']
+    list_filter = ['name', 'desc', 'detail', 'degree', 'learn_times', 'students']#过滤条件筛选
     ordering = ['-click_nums']
     readonly_fields = ['click_nums']
     list_editable = ['degree', 'desc']
