@@ -54,7 +54,7 @@ class BannerCourse(Course):
     class Meta:
         verbose_name = "轮播课程"
         verbose_name_plural = verbose_name
-        proxy = True
+        proxy = True#重新生成对象但是不会生成表
 
 
 class Lesson(models.Model):

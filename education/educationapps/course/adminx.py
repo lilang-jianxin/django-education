@@ -14,15 +14,6 @@ class CourseResourceInline(object):
     model = CourseResource
     extra = 0
 
-
-class LessonInline(object):
-    model = Lesson
-    extra = 0
-
-class CourseResourceInline(object):
-    model = CourseResource
-    extra = 0
-
 class CourseAdmin(object):
     list_display = ['name', 'desc', 'detail', 'degree', 'learn_times', 'students', 'get_zj_nums', 'go_to']
     search_fields = ['name', 'desc', 'detail', 'degree', 'students']
@@ -33,6 +24,7 @@ class CourseAdmin(object):
     exclude = ['fav_nums']
     inlines = [LessonInline, CourseResourceInline]
     style_fields = {"detail":"ueditor"}
+    list_per_page=30
     import_excel = True
 
     def queryset(self):
@@ -62,6 +54,7 @@ class BannerCourseAdmin(object):
     ordering = ['-click_nums']
     readonly_fields = ['click_nums']
     exclude = ['fav_nums']
+    list_per_page=30
     inlines = [LessonInline, CourseResourceInline]
 
     def queryset(self):
@@ -74,9 +67,11 @@ class LessonAdmin(object):
     list_display = ['course', 'name', 'add_time']
     search_fields = ['course', 'name']
     list_filter = ['course__name', 'name', 'add_time']
+    list_per_page=30
 
 
 class VideoAdmin(object):
+    list_per_page=30
     list_display = ['lesson', 'name', 'add_time']
     search_fields = ['lesson', 'name']
     list_filter = ['lesson', 'name', 'add_time']
@@ -87,6 +82,7 @@ class CourseResourceAdmin(object):
     list_display = ['course', 'name', 'download', 'add_time']
     search_fields = ['course', 'name', 'download']
     list_filter = ['course', 'name', 'download', 'add_time']
+    list_per_page=30
 
 
 xadmin.site.register(Course, CourseAdmin)
