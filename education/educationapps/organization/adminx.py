@@ -11,7 +11,7 @@ class CityDictAdmin(object):
     list_display = ['name', 'desc', 'add_time']
     search_fields = ['name', 'desc']
     list_filter = ['name', 'desc', 'add_time']
-    model_icon = 'fa fa-university'
+    #model_icon = 'fa fa-university'
 
 
 class CourseOrgAdmin(object):
@@ -20,14 +20,14 @@ class CourseOrgAdmin(object):
     list_filter = ['name', 'desc', 'click_nums', 'fav_nums']
     relfield_style = 'fk-ajax'
     style_fields = {"desc":"ueditor"}
-    model_icon = 'fa fa-university'
+   # model_icon = 'fa fa-university'
 
 
 class TeacherAdmin(object):
     list_display = ['org', 'name', 'work_years', 'work_company']
     search_fields = ['org', 'name', 'work_years', 'work_company']
     list_filter = ['org', 'name', 'work_years', 'work_company']
-    model_icon = 'fa fa-user-md'
+  #  model_icon = 'fa fa-user-md'
 
 xadmin.site.register(CityDict, CityDictAdmin)
 xadmin.site.register(CourseOrg, CourseOrgAdmin)

@@ -15,7 +15,6 @@ class EmailVerifyRecordAdmin(object):
     list_display = ['code', 'email', 'send_type', 'send_time']
     search_fields = ['code', 'email', 'send_type']
     list_filter = ['code', 'email', 'send_type', 'send_time']
-    model_icon = 'fa fa-address-book-o'
 
 class BannerAdmin(object):
     list_display = ['title', 'image', 'url', 'index', 'add_time']
@@ -34,7 +33,7 @@ class BaseSetting(object):
 class GlobalSettings(object):
     site_title = "简心后台管理系统"
     site_footer = "简单的心才能做更好的事情"
-    menu_style = "accordion"
+    # menu_style = "accordion" #是否折叠
 
 xadmin.site.register(Banner, BannerAdmin)
 xadmin.site.register(views.BaseAdminView,BaseSetting)

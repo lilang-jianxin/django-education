@@ -75,7 +75,7 @@ class VideoAdmin(object):
     list_display = ['lesson', 'name', 'add_time']
     search_fields = ['lesson', 'name']
     list_filter = ['lesson', 'name', 'add_time']
-    model_icon = 'fa fa-film'
+   #model_icon = 'fa fa-youtube-play'
 
 
 class CourseResourceAdmin(object):
@@ -83,6 +83,7 @@ class CourseResourceAdmin(object):
     search_fields = ['course', 'name', 'download']
     list_filter = ['course', 'name', 'download', 'add_time']
     list_per_page=30
+    #module_icon='clipboard text-muted'
 
 
 xadmin.site.register(Course, CourseAdmin)
